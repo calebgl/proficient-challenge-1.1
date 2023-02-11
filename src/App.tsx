@@ -28,7 +28,7 @@ export default function App() {
         </header>
         <ul className="store-items">
           {items.map((item) => (
-            <li className="item">
+            <li key={item.id} className="item">
               <div className="item-icon">{item.name}</div>
               <div className="item-inputs">
                 <button>−</button>
