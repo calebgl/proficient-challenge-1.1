@@ -16,8 +16,43 @@ const INITIAL_ITEMS: Item[] = [
   { id: 5, name: "sofa", quantity: 0, m2: 1.5 },
 ];
 
+type Total = {
+  totalItems: number;
+  totalM2: number;
+};
+
+const INITIAL_TOTAL: Total = {
+  totalItems: 0,
+  totalM2: 0,
+};
+
+function formatNumber(value: number, locales: string | string[] = "en-US") {
+  return Intl.NumberFormat(locales).format(value);
+}
+
+function formatCurrency(
+  value: number,
+  locales: string | string[] = "en-US",
+  currency: string = "USD"
+) {
+  return Intl.NumberFormat(locales, { style: "currency", currency }).format(
+    value
+  );
+}
+
 export default function App() {
   const [items, setItems] = useState<Item[]>(INITIAL_ITEMS);
+  const { totalItems, totalM2 } = items.reduce<Total>(
+    (acc, curr) => ({
+      totalItems: acc.totalItems + curr.quantity,
+      totalM2: acc.totalM2 + curr.quantity * curr.m2,
+    }),
+    INITIAL_TOTAL
+  );
+  const subtotal = 200 * totalM2;
+  const tax = 0.16 * subtotal;
+  const total = subtotal + tax;
+  const dueToday = 0.5 * total;
 
   function increment(itemId: number) {
     setItems((currentItems) =>
@@ -90,29 +125,29 @@ export default function App() {
         <div className="details">
           <div className="row">
             <div>Total Items</div>
-            <div>12</div>
+            <div>{formatNumber(totalItems)}</div>
           </div>
           <div className="row">
             <div>
               Total M<sup>2</sup>
             </div>
-            <div>8.55</div>
+            <div>{formatNumber(totalM2)}</div>
           </div>
           <div className="row">
             <div>Subtotal</div>
-            <div>$1710</div>
+            <div>{formatCurrency(subtotal)}</div>
           </div>
           <div className="row">
             <div>Tax</div>
-            <div>$273.5</div>
+            <div>{formatCurrency(tax)}</div>
           </div>
           <div className="row total-price">
             <div>Total</div>
-            <div>1,983.6</div>
+            <div>{formatCurrency(total)}</div>
           </div>
           <div className="row total-price">
             <div>Due Today 50%</div>
-            <div>$991.8</div>
+            <div>{formatCurrency(dueToday)}</div>
           </div>
         </div>
       </section>
