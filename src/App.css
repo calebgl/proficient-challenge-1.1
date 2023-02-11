@@ -1,1 +1,136 @@
+:root {
+  --base-color: 40;
+  --primary-color-light: hsl(var(--base-color), 100%, 60%);
+  --primary-color-normal: hsl(var(--base-color), 100%, 50%);
+  --primary-color-dark: hsl(var(--base-color), 100%, 40%);
+  --border-radius: 0.25rem;
+}
 
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+h2 ~ p {
+  text-align: center;
+}
+
+.App {
+  padding-block: 6rem;
+}
+
+.App > * + * {
+  margin-top: 4rem;
+}
+
+.store > * + * {
+  margin-top: 1rem;
+}
+
+.store-items {
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(8rem, 1fr));
+  gap: 0.5rem;
+}
+
+.item > * + * {
+  margin-top: 0.5rem;
+}
+
+.item-icon {
+  border: 1px solid hsl(0, 0%, 90%);
+  padding: 2rem;
+  display: grid;
+  place-items: center;
+}
+
+.item-inputs {
+  display: flex;
+}
+
+.item-inputs input,
+.item-inputs button {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid hsl(0, 0%, 90%);
+}
+
+.item-inputs input {
+  flex: 1 1;
+  width: 100%;
+  text-align: center;
+}
+
+.item-inputs button {
+  cursor: pointer;
+  flex-basis: 15%;
+  transition: background-color 300ms ease;
+}
+
+.item-inputs button:hover {
+  background-color: hsl(0, 0%, 85%);
+}
+
+.item-inputs button:first-of-type {
+  border-top-left-radius: var(--border-radius);
+  border-bottom-left-radius: var(--border-radius);
+}
+.item-inputs button:last-of-type {
+  border-top-right-radius: var(--border-radius);
+  border-bottom-right-radius: var(--border-radius);
+}
+
+.store-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.store-buttons .btn {
+  flex-basis: calc(100% / 6);
+}
+
+.btn {
+  border-radius: var(--border-radius);
+  background-color: var(--primary-color-normal);
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background-color 300ms ease-in-out;
+}
+
+.btn:hover {
+  background-color: var(--primary-color-dark);
+}
+
+.btn.clear {
+  background-color: hsl(0, 0%, 100%);
+  border-color: var(--primary-color-normal);
+}
+
+.btn.clear:hover {
+  background-color: hsl(0, 0%, 75%);
+}
+
+.details {
+  margin-inline: auto;
+  max-width: 24rem;
+  background-color: hsl(0, 0%, 97%);
+  padding: 2rem;
+}
+
+.details > * + * {
+  margin-top: 0.5rem;
+}
+
+.row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row > div:last-of-type {
+  flex: 0 1 25%;
+}
+
+.row.total-price {
+  font-weight: bold;
+}
