@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import "./App.css";
 
 type Item = {
@@ -40,6 +40,18 @@ export default function App() {
     );
   }
 
+  function set(itemId: number, event: ChangeEvent<HTMLInputElement>) {
+    // TODO: debounce implementation
+    // TODO: verify that is in fact a number
+    const newQuantity = Number(event.currentTarget.value);
+    setItems((currentItems) =>
+      currentItems.map((item) => {
+        const quantity = item.id === itemId ? newQuantity : item.quantity;
+        return { ...item, quantity };
+      })
+    );
+  }
+
   return (
     <main className="App">
       <section className="store">
@@ -56,7 +68,11 @@ export default function App() {
               <div className="item-icon">{item.name}</div>
               <div className="item-inputs">
                 <button onClick={() => decrement(item.id)}>−</button>
-                <input type="text" value={item.quantity} />
+                <input
+                  type="text"
+                  value={item.quantity}
+                  onChange={(event) => set(item.id, event)}
+                />
                 <button onClick={() => increment(item.id)}>+</button>
               </div>
             </li>
