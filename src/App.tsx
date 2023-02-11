@@ -28,6 +28,18 @@ export default function App() {
     );
   }
 
+  function decrement(itemId: number) {
+    setItems((currentItems) =>
+      currentItems.map((item) => {
+        if (item.quantity === 0) {
+          return item;
+        }
+        const quantity = item.quantity - (item.id === itemId ? 1 : 0);
+        return { ...item, quantity };
+      })
+    );
+  }
+
   return (
     <main className="App">
       <section className="store">
@@ -43,7 +55,7 @@ export default function App() {
             <li key={item.id} className="item">
               <div className="item-icon">{item.name}</div>
               <div className="item-inputs">
-                <button>−</button>
+                <button onClick={() => decrement(item.id)}>−</button>
                 <input type="text" value={item.quantity} />
                 <button onClick={() => increment(item.id)}>+</button>
               </div>
