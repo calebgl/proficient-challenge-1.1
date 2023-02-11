@@ -1,3 +1,4 @@
+import { useState } from "react";
 import "./App.css";
 
 type Item = {
@@ -7,7 +8,7 @@ type Item = {
   m2: number;
 };
 
-const items: Item[] = [
+const INITIAL_ITEMS: Item[] = [
   { id: 1, name: "beds", quantity: 0, m2: 1.2 },
   { id: 2, name: "refrigerator", quantity: 0, m2: 1 },
   { id: 3, name: "furniture", quantity: 0, m2: 0.5 },
@@ -16,6 +17,17 @@ const items: Item[] = [
 ];
 
 export default function App() {
+  const [items, setItems] = useState<Item[]>(INITIAL_ITEMS);
+
+  function increment(itemId: number) {
+    setItems((currentItems) =>
+      currentItems.map((item) => {
+        const quantity = item.quantity + (item.id === itemId ? 1 : 0);
+        return { ...item, quantity };
+      })
+    );
+  }
+
   return (
     <main className="App">
       <section className="store">
@@ -32,8 +44,8 @@ export default function App() {
               <div className="item-icon">{item.name}</div>
               <div className="item-inputs">
                 <button>−</button>
-                <input type="text" />
-                <button>+</button>
+                <input type="text" value={item.quantity} />
+                <button onClick={() => increment(item.id)}>+</button>
               </div>
             </li>
           ))}
