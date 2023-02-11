@@ -87,6 +87,10 @@ export default function App() {
     );
   }
 
+  function clear() {
+    setItems(INITIAL_ITEMS);
+  }
+
   return (
     <main className="App">
       <section className="store">
@@ -114,7 +118,9 @@ export default function App() {
           ))}
         </ul>
         <footer className="store-buttons">
-          <button className="btn clear">Clear</button>
+          <button className="btn clear" onClick={clear}>
+            Clear
+          </button>
           <button className="btn">Calculate</button>
         </footer>
       </section>
