@@ -7,7 +7,11 @@ const INITIAL_TOTAL: Total = {
   totalM2: 0,
 };
 
-export function useStore() {
+export function useStore(
+  m2Price: number = 200,
+  taxPercentage: number = 16,
+  dueTodayPercentage: number = 50
+) {
   const { storeState, incrementItem, decrementItem, setItem, clearStore } =
     useContext(StoreContext);
   const { items } = storeState;
@@ -18,10 +22,10 @@ export function useStore() {
     }),
     INITIAL_TOTAL
   );
-  const subtotal = 200 * totalM2;
-  const tax = 0.16 * subtotal;
+  const subtotal = m2Price * totalM2;
+  const tax = (taxPercentage / 100) * subtotal;
   const total = subtotal + tax;
-  const dueToday = 0.5 * total;
+  const dueToday = (dueTodayPercentage / 100) * total;
 
   return {
     ...storeState,
