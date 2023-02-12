@@ -1,12 +1,6 @@
 import { ChangeEvent, useState } from "react";
 import "./App.css";
-
-type Item = {
-  id: number;
-  name: string;
-  quantity: number;
-  m2: number;
-};
+import { Item, Total } from "./types";
 
 const INITIAL_ITEMS: Item[] = [
   { id: 1, name: "beds", quantity: 0, m2: 1.2 },
@@ -15,11 +9,6 @@ const INITIAL_ITEMS: Item[] = [
   { id: 4, name: "oven", quantity: 0, m2: 0.6 },
   { id: 5, name: "sofa", quantity: 0, m2: 1.5 },
 ];
-
-type Total = {
-  totalItems: number;
-  totalM2: number;
-};
 
 const INITIAL_TOTAL: Total = {
   totalItems: 0,
