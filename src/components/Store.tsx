@@ -1,12 +1,10 @@
-import { useContext } from "react";
-import { StoreContext } from "./StoreContext";
+import { useStore } from "~/hooks/useStore";
 import StoreFooter from "./StoreFooter";
 import StoreHeader from "./StoreHeader";
 import { StoreItem } from "./StoreItem";
 
 export default function Store() {
-  const { storeState } = useContext(StoreContext);
-  const { items } = storeState;
+  const { items } = useStore();
   return (
     <section className="store">
       <StoreHeader />

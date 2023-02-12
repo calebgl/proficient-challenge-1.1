@@ -1,26 +1,34 @@
-import { useContext } from "react";
+import { ChangeEvent } from "react";
+import { useStore } from "~/hooks/useStore";
 import { Item } from "~/types";
-import { StoreContext } from "./StoreContext";
 
 type Props = {
   item: Item;
 };
 export function StoreItem(props: Props) {
   const { item } = props;
-  const { decrementItem, incrementItem, setItem } = useContext(StoreContext);
+  const { decrement, increment, set } = useStore();
+
+  function handleIncrement() {
+    increment(item.id);
+  }
+
+  function handleDecrement() {
+    decrement(item.id);
+  }
+
+  function handleSet(event: ChangeEvent<HTMLInputElement>) {
+    const quantity = Number(event.currentTarget.value);
+    set(item.id, quantity);
+  }
+
   return (
     <li className="item">
       <div className="item-icon">{item.name}</div>
       <div className="item-inputs">
-        <button onClick={() => decrementItem(item.id)}>−</button>
-        <input
-          type="text"
-          value={item.quantity}
-          onChange={(event) =>
-            setItem(item.id, Number(event.currentTarget.value))
-          }
-        />
-        <button onClick={() => incrementItem(item.id)}>+</button>
+        <button onClick={handleDecrement}>−</button>
+        <input type="text" value={item.quantity} onChange={handleSet} />
+        <button onClick={handleIncrement}>+</button>
       </div>
     </li>
   );
