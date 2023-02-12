@@ -1,5 +1,8 @@
 import { ChangeEvent } from "react";
 import { Item } from "~/types";
+import StoreFooter from "./StoreFooter";
+import StoreHeader from "./StoreHeader";
+import { StoreItem } from "./StoreItem";
 
 type Props = {
   items: Item[];
@@ -12,35 +15,19 @@ export default function Store(props: Props) {
   const { items, decrement, increment, set, clear } = props;
   return (
     <section className="store">
-      <header>
-        <h2 className="">What items to store?</h2>
-        <p>
-          Select which items you wish to store before moving to your new home.
-          We'll keep'em safe!
-        </p>
-      </header>
+      <StoreHeader />
       <ul className="store-items">
         {items.map((item) => (
-          <li key={item.id} className="item">
-            <div className="item-icon">{item.name}</div>
-            <div className="item-inputs">
-              <button onClick={() => decrement(item.id)}>−</button>
-              <input
-                type="text"
-                value={item.quantity}
-                onChange={(event) => set(item.id, event)}
-              />
-              <button onClick={() => increment(item.id)}>+</button>
-            </div>
-          </li>
+          <StoreItem
+            key={item.id}
+            item={item}
+            decrement={decrement}
+            increment={increment}
+            set={set}
+          />
         ))}
       </ul>
-      <footer className="store-buttons">
-        <button className="btn clear" onClick={clear}>
-          Clear
-        </button>
-        <button className="btn">Calculate</button>
-      </footer>
+      <StoreFooter clear={clear} />
     </section>
   );
 }
