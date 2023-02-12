@@ -1,33 +1,21 @@
-import { ChangeEvent } from "react";
-import { Item } from "~/types";
+import { ChangeEvent, useContext } from "react";
+import { StoreContext } from "./StoreContext";
 import StoreFooter from "./StoreFooter";
 import StoreHeader from "./StoreHeader";
 import { StoreItem } from "./StoreItem";
 
-type Props = {
-  items: Item[];
-  decrement(itemId: number): void;
-  increment(itemId: number): void;
-  set(itemId: number, event: ChangeEvent<HTMLInputElement>): void;
-  clear(): void;
-};
-export default function Store(props: Props) {
-  const { items, decrement, increment, set, clear } = props;
+export default function Store() {
+  const { storeState, clearStore } = useContext(StoreContext);
+  const { items } = storeState;
   return (
     <section className="store">
       <StoreHeader />
       <ul className="store-items">
         {items.map((item) => (
-          <StoreItem
-            key={item.id}
-            item={item}
-            decrement={decrement}
-            increment={increment}
-            set={set}
-          />
+          <StoreItem key={item.id} item={item} />
         ))}
       </ul>
-      <StoreFooter clear={clear} />
+      <StoreFooter clear={clearStore} />
     </section>
   );
 }

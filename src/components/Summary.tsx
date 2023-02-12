@@ -1,16 +1,28 @@
+import { useContext } from "react";
+import { Total } from "~/types";
 import { formatCurrency, formatNumber } from "~/utils";
+import { StoreContext } from "./StoreContext";
 
-type Props = {
-  totalItems: number;
-  totalM2: number;
-  subtotal: number;
-  tax: number;
-  total: number;
-  dueToday: number;
+const INITIAL_TOTAL: Total = {
+  totalItems: 0,
+  totalM2: 0,
 };
 
-export default function Summary(props: Props) {
-  const { totalItems, totalM2, subtotal, tax, total, dueToday } = props;
+export default function Summary() {
+  const { storeState } = useContext(StoreContext);
+  const { items } = storeState;
+  const { totalItems, totalM2 } = items.reduce<Total>(
+    (acc, curr) => ({
+      totalItems: acc.totalItems + curr.quantity,
+      totalM2: acc.totalM2 + curr.quantity * curr.m2,
+    }),
+    INITIAL_TOTAL
+  );
+  const subtotal = 200 * totalM2;
+  const tax = 0.16 * subtotal;
+  const total = subtotal + tax;
+  const dueToday = 0.5 * total;
+
   return (
     <section className="summary">
       <header>
