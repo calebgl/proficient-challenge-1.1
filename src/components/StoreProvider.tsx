@@ -1,4 +1,5 @@
-import { ReactNode, useState } from "react";
+import { ReactNode, useReducer } from "react";
+import { storeReducer } from "~/reducer";
 import { Item, StoreState } from "~/types";
 import { StoreContext } from "./StoreContext";
 
@@ -6,7 +7,7 @@ type Props = {
   children?: ReactNode;
 };
 
-const INITIAL_ITEMS: Item[] = [
+export const INITIAL_ITEMS: Item[] = [
   { id: 1, name: "beds", quantity: 0, m2: 1.2 },
   { id: 2, name: "refrigerator", quantity: 0, m2: 1 },
   { id: 3, name: "furniture", quantity: 0, m2: 0.5 },
@@ -14,52 +15,28 @@ const INITIAL_ITEMS: Item[] = [
   { id: 5, name: "sofa", quantity: 0, m2: 1.5 },
 ];
 
-const INITIAL_STATE: StoreState = {
+export const INITIAL_STATE: StoreState = {
   items: INITIAL_ITEMS,
 };
 
 export default function StoreProvider(props: Props) {
   const { children } = props;
-  const [storeState, setStoreState] = useState<StoreState>(INITIAL_STATE);
+  const [storeState, dispatch] = useReducer(storeReducer, INITIAL_STATE);
 
   function incrementItem(id: number) {
-    const items = storeState.items.map((item) => {
-      const quantity = item.quantity + (item.id === id ? 1 : 0);
-      return { ...item, quantity };
-    });
-    setStoreState((currentState) => ({
-      ...currentState,
-      items,
-    }));
+    dispatch({ type: "increment_item", payload: { id } });
   }
 
   function decrementItem(id: number) {
-    const items = storeState.items.map((item) => {
-      if (item.quantity === 0) {
-        return item;
-      }
-      const quantity = item.quantity - (item.id === id ? 1 : 0);
-      return { ...item, quantity };
-    });
-    setStoreState((currentState) => ({
-      ...currentState,
-      items,
-    }));
+    dispatch({ type: "decrement_item", payload: { id } });
   }
 
   function setItem(id: number, quantity: number) {
-    const items = storeState.items.map((item) => {
-      const newQuantity = item.id === id ? quantity : item.quantity;
-      return { ...item, quantity: newQuantity };
-    });
-    setStoreState((currentState) => ({
-      ...currentState,
-      items,
-    }));
+    dispatch({ type: "set_item", payload: { id, quantity } });
   }
 
   function clearStore() {
-    setStoreState(INITIAL_STATE);
+    dispatch({ type: "clear_store" });
   }
 
   return (
