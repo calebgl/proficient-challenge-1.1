@@ -8,11 +8,16 @@ type Props = {
 };
 
 export const INITIAL_ITEMS: Item[] = [
-  { id: 1, name: "beds", quantity: 0, m2: 1.2 },
-  { id: 2, name: "refrigerator", quantity: 0, m2: 1 },
-  { id: 3, name: "furniture", quantity: 0, m2: 0.5 },
-  { id: 4, name: "oven", quantity: 0, m2: 0.6 },
-  { id: 5, name: "sofa", quantity: 0, m2: 1.5 },
+  { id: 1, name: "Beds", quantity: 0, m2: 1.2 },
+  { id: 2, name: "Refrigerator", quantity: 0, m2: 1 },
+  { id: 3, name: "Furniture", quantity: 0, m2: 0.5 },
+  { id: 4, name: "Oven", quantity: 0, m2: 0.6 },
+  { id: 5, name: "Sofa", quantity: 0, m2: 1.5 },
+  { id: 6, name: "TV", quantity: 0, m2: 0.25 },
+  { id: 7, name: "Wash-dryer", quantity: 0, m2: 0.5 },
+  { id: 8, name: "Dinning", quantity: 0, m2: 2 },
+  { id: 9, name: "Desk", quantity: 0, m2: 0.75 },
+  { id: 10, name: "Wardrobe", quantity: 0, m2: 3.2 },
 ];
 
 export const INITIAL_STATE: StoreState = {
