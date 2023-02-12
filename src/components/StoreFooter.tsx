@@ -1,11 +1,11 @@
-type Props = {
-  clear(): void;
-};
-export default function StoreFooter(props: Props) {
-  const { clear } = props;
+import { useContext } from "react";
+import { StoreContext } from "./StoreContext";
+
+export default function StoreFooter() {
+  const { clearStore } = useContext(StoreContext);
   return (
     <footer className="store-buttons">
-      <button className="btn clear" onClick={clear}>
+      <button className="btn clear" onClick={clearStore}>
         Clear
       </button>
       <button className="btn">Calculate</button>

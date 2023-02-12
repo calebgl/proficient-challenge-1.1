@@ -1,11 +1,11 @@
-import { ChangeEvent, useContext } from "react";
+import { useContext } from "react";
 import { StoreContext } from "./StoreContext";
 import StoreFooter from "./StoreFooter";
 import StoreHeader from "./StoreHeader";
 import { StoreItem } from "./StoreItem";
 
 export default function Store() {
-  const { storeState, clearStore } = useContext(StoreContext);
+  const { storeState } = useContext(StoreContext);
   const { items } = storeState;
   return (
     <section className="store">
@@ -15,7 +15,7 @@ export default function Store() {
           <StoreItem key={item.id} item={item} />
         ))}
       </ul>
-      <StoreFooter clear={clearStore} />
+      <StoreFooter />
     </section>
   );
 }
