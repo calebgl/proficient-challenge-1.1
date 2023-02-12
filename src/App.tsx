@@ -1,8 +1,8 @@
 import { ChangeEvent, useState } from "react";
 import "./App.css";
 import Store from "./components/Store";
+import Summary from "./components/Summary";
 import { Item, Total } from "./types";
-import { formatNumber, formatCurrency } from "./utils";
 
 const INITIAL_ITEMS: Item[] = [
   { id: 1, name: "beds", quantity: 0, m2: 1.2 },
@@ -77,39 +77,14 @@ export default function App() {
         set={set}
         clear={clear}
       />
-      <section className="summary">
-        <header>
-          <h2>Summary</h2>
-        </header>
-        <div className="details">
-          <div className="row">
-            <div>Total Items</div>
-            <div>{formatNumber(totalItems)}</div>
-          </div>
-          <div className="row">
-            <div>
-              Total M<sup>2</sup>
-            </div>
-            <div>{formatNumber(totalM2)}</div>
-          </div>
-          <div className="row">
-            <div>Subtotal</div>
-            <div>{formatCurrency(subtotal)}</div>
-          </div>
-          <div className="row">
-            <div>Tax</div>
-            <div>{formatCurrency(tax)}</div>
-          </div>
-          <div className="row total-price">
-            <div>Total</div>
-            <div>{formatCurrency(total)}</div>
-          </div>
-          <div className="row total-price">
-            <div>Due Today 50%</div>
-            <div>{formatCurrency(dueToday)}</div>
-          </div>
-        </div>
-      </section>
+      <Summary
+        totalItems={totalItems}
+        totalM2={totalM2}
+        subtotal={subtotal}
+        tax={tax}
+        total={total}
+        dueToday={dueToday}
+      />
     </main>
   );
 }
