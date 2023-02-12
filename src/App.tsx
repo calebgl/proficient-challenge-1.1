@@ -2,6 +2,7 @@ import { ChangeEvent, useState } from "react";
 import "./App.css";
 import Store from "./components/Store";
 import { Item, Total } from "./types";
+import { formatNumber, formatCurrency } from "./utils";
 
 const INITIAL_ITEMS: Item[] = [
   { id: 1, name: "beds", quantity: 0, m2: 1.2 },
@@ -15,20 +16,6 @@ const INITIAL_TOTAL: Total = {
   totalItems: 0,
   totalM2: 0,
 };
-
-function formatNumber(value: number, locales: string | string[] = "en-US") {
-  return Intl.NumberFormat(locales).format(value);
-}
-
-function formatCurrency(
-  value: number,
-  locales: string | string[] = "en-US",
-  currency: string = "USD"
-) {
-  return Intl.NumberFormat(locales, { style: "currency", currency }).format(
-    value
-  );
-}
 
 export default function App() {
   const [items, setItems] = useState<Item[]>(INITIAL_ITEMS);
