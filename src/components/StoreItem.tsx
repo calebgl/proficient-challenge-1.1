@@ -19,6 +19,11 @@ export function StoreItem(props: Props) {
 
   function handleSet(event: ChangeEvent<HTMLInputElement>) {
     const quantity = Number(event.currentTarget.value);
+
+    if (isNaN(quantity)) {
+      return;
+    }
+
     set(item.id, quantity);
   }
 
@@ -27,7 +32,13 @@ export function StoreItem(props: Props) {
       <div className="item-icon">{item.name}</div>
       <div className="item-inputs">
         <button onClick={handleDecrement}>−</button>
-        <input type="text" value={item.quantity} onChange={handleSet} />
+        <input
+          type="text"
+          inputMode="numeric"
+          aria-label={`quantity of item ${item.id}`}
+          value={item.quantity}
+          onChange={handleSet}
+        />
         <button onClick={handleIncrement}>+</button>
       </div>
     </li>
