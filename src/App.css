@@ -40,9 +40,16 @@ h2 ~ p {
 
 .item-icon {
   border: 1px solid hsl(0, 0%, 90%);
-  padding: 2rem;
+  padding: 2rem 1rem;
   display: grid;
+  gap: 0.5rem;
   place-items: center;
+  white-space: nowrap;
+}
+
+.item-icon svg {
+  max-height: 3rem;
+  max-width: 3rem;
 }
 
 .item-inputs {

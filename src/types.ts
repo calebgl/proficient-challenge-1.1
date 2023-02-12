@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export type StoreState = {
   items: Item[];
 };
@@ -21,6 +23,7 @@ export type Item = {
   name: string;
   quantity: number;
   m2: number;
+  icon: ReactNode;
 };
 
 export type Total = {

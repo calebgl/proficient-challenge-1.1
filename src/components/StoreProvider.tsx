@@ -1,6 +1,18 @@
 import { ReactNode, useReducer } from "react";
 import { storeReducer } from "~/reducer";
 import { Item, StoreState } from "~/types";
+import {
+  Beds,
+  Desk,
+  Dining,
+  Furniture,
+  Oven,
+  Refrigerator,
+  Sofa,
+  Tv,
+  Wardrobe,
+  WasherDryer,
+} from "./icons";
 import { StoreContext } from "./StoreContext";
 
 type Props = {
@@ -8,16 +20,16 @@ type Props = {
 };
 
 export const INITIAL_ITEMS: Item[] = [
-  { id: 1, name: "Beds", quantity: 0, m2: 1.2 },
-  { id: 2, name: "Refrigerator", quantity: 0, m2: 1 },
-  { id: 3, name: "Furniture", quantity: 0, m2: 0.5 },
-  { id: 4, name: "Oven", quantity: 0, m2: 0.6 },
-  { id: 5, name: "Sofa", quantity: 0, m2: 1.5 },
-  { id: 6, name: "TV", quantity: 0, m2: 0.25 },
-  { id: 7, name: "Wash-dryer", quantity: 0, m2: 0.5 },
-  { id: 8, name: "Dinning", quantity: 0, m2: 2 },
-  { id: 9, name: "Desk", quantity: 0, m2: 0.75 },
-  { id: 10, name: "Wardrobe", quantity: 0, m2: 3.2 },
+  { id: 1, name: "Beds", quantity: 0, m2: 1.2, icon: <Beds /> },
+  { id: 2, name: "Refrigerator", quantity: 0, m2: 1, icon: <Refrigerator /> },
+  { id: 3, name: "Furniture", quantity: 0, m2: 0.5, icon: <Furniture /> },
+  { id: 4, name: "Oven", quantity: 0, m2: 0.6, icon: <Oven /> },
+  { id: 5, name: "Sofa", quantity: 0, m2: 1.5, icon: <Sofa /> },
+  { id: 6, name: "TV", quantity: 0, m2: 0.25, icon: <Tv /> },
+  { id: 7, name: "Wash-dryer", quantity: 0, m2: 0.5, icon: <WasherDryer /> },
+  { id: 8, name: "Dining", quantity: 0, m2: 2, icon: <Dining /> },
+  { id: 9, name: "Desk", quantity: 0, m2: 0.75, icon: <Desk /> },
+  { id: 10, name: "Wardrobe", quantity: 0, m2: 3.2, icon: <Wardrobe /> },
 ];
 
 export const INITIAL_STATE: StoreState = {

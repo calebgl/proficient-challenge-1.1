@@ -29,7 +29,10 @@ export function StoreItem(props: Props) {
 
   return (
     <li className="item">
-      <div className="item-icon">{item.name}</div>
+      <div className="item-icon">
+        {item.icon}
+        {item.name}
+      </div>
       <div className="item-inputs">
         <button onClick={handleDecrement}>−</button>
         <input

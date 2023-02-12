@@ -1,0 +1,10 @@
+export { default as Beds } from "./Beds";
+export { default as Desk } from "./Desk";
+export { default as Dining } from "./Dining";
+export { default as Furniture } from "./Furniture";
+export { default as Oven } from "./Oven";
+export { default as Refrigerator } from "./Refrigerator";
+export { default as Sofa } from "./Sofa";
+export { default as Tv } from "./Tv";
+export { default as Wardrobe } from "./Wardrobe";
+export { default as WasherDryer } from "./WasherDryer";
