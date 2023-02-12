@@ -16,7 +16,7 @@ h2 ~ p {
 }
 
 .App {
-  padding-block: 6rem;
+  padding: 6rem 1rem;
 }
 
 .App > * + * {
@@ -133,4 +133,18 @@ h2 ~ p {
 
 .row.total-price {
   font-weight: bold;
+}
+
+@media (prefers-color-scheme: dark) {
+  .details {
+    background-color: hsl(0, 0%, 40%);
+  }
+
+  .btn.clear {
+    background-color: hsl(0, 0%, 40%);
+  }
+
+  .btn.clear:hover {
+    background-color: hsl(0, 0%, 30%);
+  }
 }
